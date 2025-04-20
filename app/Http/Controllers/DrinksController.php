@@ -22,6 +22,8 @@ class DrinksController extends Controller
         return view('admin.drinks.create', compact('categories'));
     }
 
+    
+    
 
     // Store the new image in the database
     public function store(Request $request)

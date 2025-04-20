@@ -1,6 +1,7 @@
 @extends('frontend.Master')
 
 @section('content')
+
     <div class="container py-5">
         <div class="row g-4">
             <!-- Sidebar with filters -->

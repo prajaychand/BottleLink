@@ -40,21 +40,12 @@ class PageController extends Controller
             $drinksQuery->where('category_id', $id);
         }
     
-        // Apply price range filter if provided
-        if ($request->filled('price_range')) {
-            $priceRange = explode('-', $request->price_range);
-            if (count($priceRange) === 2) {
-                $min = floatval(trim($priceRange[0]));
-                $max = floatval(trim($priceRange[1]));
-                $drinksQuery->whereBetween('price', [$min, $max]);
-            }
-        }
-    
         // Get the filtered drinks
         $drinks = $drinksQuery->get();
     
         return view('pages.drinks', compact('drinks', 'category', 'categories'));
     }
+    
     
 
     public function posts()

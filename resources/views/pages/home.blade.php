@@ -65,7 +65,7 @@
         </div>
     </section>
 
-    <style>
+    <style>      
         
         /* Hero Slider Section */
         .hero-section {

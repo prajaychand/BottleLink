@@ -410,7 +410,6 @@ body {
                 @enderror
             </div>
 
-
             <!-- Email -->
             <div class="col-md-6">
                 <label for="email" class="form-label">Email Address</label>
@@ -436,6 +435,22 @@ body {
                     <div class="text-danger small">{{ $message }}</div>
                 @enderror
             </div>
+
+            <!-- Gender -->
+            <div class="col-md-6">
+                <label for="gender" class="form-label">Gender</label>
+                <div class="input-group mb-1">
+                    <span class="input-group-text"><i class="bi bi-gender-ambiguous"></i></span>
+                    <select id="gender" name="gender" class="form-control">
+                        <option value="male" {{ old('gender', auth()->user()->gender) == 'male' ? 'selected' : '' }}>Male</option>
+                        <option value="female" {{ old('gender', auth()->user()->gender) == 'female' ? 'selected' : '' }}>Female</option>
+                        <option value="other" {{ old('gender', auth()->user()->gender) == 'other' ? 'selected' : '' }}>Other</option>
+                    </select>
+                </div>
+                @error('gender')
+                    <div class="text-danger small">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
 
         <!-- Buttons -->
@@ -446,6 +461,9 @@ body {
             </button>
         </div>
     </form>
+</div>
+
+    
 </div>
 
                         </div>

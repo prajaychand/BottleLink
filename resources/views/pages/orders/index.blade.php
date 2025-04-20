@@ -113,9 +113,7 @@
                                     </div>
                                     <h4 class="mb-3">No Orders Found</h4>
                                     <p class="text-muted mb-4">You haven't placed any orders yet.</p>
-                                    <a href="{{ route('drinks.index') }}" class="btn btn-primary px-4 py-2">
-                                        Start Shopping
-                                    </a>
+                                    
                                 </div>
                             @endif
                         </div>
