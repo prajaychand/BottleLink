@@ -1,10 +1,10 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DrinksController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminProfileController;
@@ -13,6 +13,8 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\AdminDashboardController;  // Import AdminDashboardController
 use App\Http\Controllers\SliderImageController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
+use App\Http\Controllers\Auth\PasswordController;
 
 // ✅ Public Pages (Accessible to Everyone)
 Route::controller(PageController::class)->group(function () {
@@ -102,3 +104,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::patch('/orders/{id}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
 });
 
+Route::middleware('guest')->group(function () {
+    // Show the "Forgot Password" form
+    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
+
+    // Handle the form submission to send the reset link
+    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
+
+    // Show the password reset form (from email link)
+    Route::get('reset-password/{token}', [PasswordController::class, 'edit'])->name('password.reset');
+
+    // Handle the password reset form submission
+    Route::post('reset-password', [PasswordController::class, 'update'])->name('password.update');
+});
