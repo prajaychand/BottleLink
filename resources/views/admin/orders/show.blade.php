@@ -22,6 +22,10 @@
                                                     <span class="fw-medium ms-2">{{ $order->user->name ?? 'Guest' }}</span>
                                                 </div>
                                                 <div class="mb-2">
+                                                    <span class="text-muted">Contact:</span>
+                                                    <span class="fw-medium ms-2">{{ $order->user->phone ?? 'Guest' }}</span>
+                                                </div>
+                                                <div class="mb-2">
                                                     <span class="text-muted">Order Date:</span>
                                                     <span class="fw-medium ms-2">{{ $order->created_at->format('F d, Y') }}</span>
                                                 </div>

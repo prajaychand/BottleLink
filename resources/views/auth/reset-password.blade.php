@@ -23,18 +23,6 @@
                         <form method="POST" action="{{ route('password.update') }}">
                             @csrf
 
-                            
-                            {{-- <!-- Email Address -->
-                            <div class="form-group">
-                                <label class="form-label" for="email">{{ __('Email Address') }}</label>
-                                <div class="input-with-icon">
-                                    <i class="fas fa-envelope input-icon"></i>
-                                    <x-text-input id="email" class="form-input disabled-input" type="email"
-                                        name="email" :value=":value="old('email', $email)" " required readonly autocomplete="username" />
-                                </div>
-                                <x-input-error :messages="$errors->get('email')" class="input-error" />
-                            </div> --}}
-
                             <!-- Password -->
                             <div class="form-group">
                                 <label class="form-label" for="password">{{ __('New Password') }}</label>

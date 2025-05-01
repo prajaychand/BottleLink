@@ -24,6 +24,11 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/gallery', 'gallery')->name('gallery'); 
     Route::post('/gallery', 'galleryStore')->name('gallery.store'); 
     Route::get('/orders', 'orders')->name('orders.index'); 
+    Route::get('/search', 'search')->name('search'); 
+    Route::get('/about', 'about')->name('about'); 
+    Route::get('/terms', 'terms')->name('terms&conditions'); 
+
+
 });
 
 

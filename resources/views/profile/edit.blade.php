@@ -3,9 +3,9 @@
 
 <style>
 :root {
-    --primary-color: #6200ea;
-    --primary-light: #9d46ff;
-    --primary-dark: #0a00b6;
+    --primary-color: #000000;
+    --primary-light: #020103;
+    --primary-dark: #000000;
     --secondary-color: #03dac6;
     --secondary-dark: #018786;
     --background-light: #f8f9fa;
@@ -331,11 +331,12 @@ body {
                     <!-- Avatar -->
                     <div class="avatar-upload mb-3 position-relative">
                         <img 
-                            src="{{ auth()->user()->avatar_url ?? 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name) . '&background=6200ea&color=fff' }}" 
-                            alt="Profile Avatar" 
-                            class="profile-avatar mb-3 rounded-circle" 
-                            style="width: 100px; height: 100px; object-fit: cover;"
-                        >
+                        src="{{ auth()->user()->avatar_url ?? 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name) . '&background=00000000&color=fff' }}" 
+                        alt="Profile Avatar" 
+                        class="profile-avatar mb-3 rounded-circle" 
+                        style="width: 100px; height: 100px; object-fit: cover; background-color: #000;"
+                    >
+                    
                         <label for="avatar-upload" class="avatar-edit position-absolute top-0 end-0">
                             <i class="bi bi-camera"></i>
                             <input type="file" id="avatar-upload" accept="image/*" class="d-none">
@@ -540,18 +541,6 @@ body {
                                         </div>
                                     </div>
                                     
-                                    <div class="alert alert-info d-flex" role="alert">
-                                        <i class="bi bi-info-circle-fill me-2 fs-5"></i>
-                                        <div>
-                                            <strong>Password requirements:</strong>
-                                            <ul class="mb-0 ps-3 mt-1">
-                                                <li>Minimum 8 characters long</li>
-                                                <li>Include at least one uppercase letter</li>
-                                                <li>Include at least one number</li>
-                                                <li>Include at least one special character</li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                     
                                     <div class="d-flex justify-content-end mt-4">
                                         <button type="button" class="btn btn-light me-2">Cancel</button>
@@ -563,94 +552,11 @@ body {
                                 
                                 <hr class="my-4">
                                 
-                                
-                                <!-- Login sessions -->
-                                <div class="mb-4">
-                                    <h5 class="mb-3">Active Sessions</h5>
-                                    <div class="card bg-light border-0">
-                                        <div class="card-body p-3">
-                                            <div class="d-flex align-items-center justify-content-between">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="me-3">
-                                                        <i class="bi bi-laptop fs-3 text-primary"></i>
-                                                    </div>
-                                                    <div>
-                                                        <h6 class="mb-1">MacBook Pro - Chrome</h6>
-                                                        <p class="text-muted mb-0 small">New York, USA · Current session</p>
-                                                    </div>
-                                                </div>
-                                                <button class="btn btn-sm btn-outline-danger">
-                                                    <i class="bi bi-x-circle me-1"></i> Logout
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Notifications Tab -->
-                <div class="tab-pane fade" id="notifications-tab">
-                    <div class="card profile-card shadow-sm">
-                        <div class="card-header card-header-gradient py-3">
-                            <div class="d-flex align-items-center card-header-content">
-                                <i class="bi bi-bell fs-4 me-2"></i>
-                                <div>
-                                    <h5 class="card-title mb-0 fw-bold">Notification Preferences</h5>
-                                    <p class="card-subtitle mb-0 small opacity-75">Manage how we contact you</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body p-4">
-                            <form class="fade-in">
-                                <h6 class="mb-3">Email Notifications</h6>
-                                
-                                <div class="mb-3 d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <label class="form-check-label fw-medium" for="accountUpdates">Account updates</label>
-                                        <p class="text-muted small mb-0">Important information about your account</p>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="accountUpdates" checked>
-                                    </div>
-                                </div>
-                                
-                                <div class="mb-3 d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <label class="form-check-label fw-medium" for="securityAlerts">Security alerts</label>
-                                        <p class="text-muted small mb-0">Notifications about your account security</p>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="securityAlerts" checked>
-                                    </div>
-                                </div>
-                                
-                                <div class="mb-3 d-flex justify-content-between align-items-center">
-                                    <div>
-                                        <label class="form-check-label fw-medium" for="productUpdates">Product updates</label>
-                                        <p class="text-muted small mb-0">Information about new features and improvements</p>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="productUpdates">
-                                    </div>
-                                </div>
-                                
-                                
-                                <hr class="my-4">
-                        
-                                
-                                <div class="d-flex justify-content-end mt-4">
-                                    <button type="button" class="btn btn-light me-2">Cancel</button>
-                                    <button type="submit" class="btn btn-purple">
-                                        <i class="bi bi-save me-1"></i> Save Preferences
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

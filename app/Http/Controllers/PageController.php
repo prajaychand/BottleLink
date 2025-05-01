@@ -19,32 +19,37 @@ class PageController extends Controller
     }
 
     public function drinks(Request $request, $id)
-    {
-        $categories = Category::all();
-        $category = Category::findOrFail($id);
-    
-        // Initialize query
-        $drinksQuery = Drinks::query();
-    
-        // Check if "All" categories are selected
-        if ($request->has('categories')) {
-            // If 'all' is selected, don't filter by category
-            if (in_array('all', $request->categories)) {
-                // Do nothing, meaning we show all drinks
-            } else {
-                // Otherwise, apply filters based on selected categories
-                $drinksQuery->whereIn('category_id', $request->categories);
-            }
-        } else {
-            // Fallback to default category if no filter is applied
-            $drinksQuery->where('category_id', $id);
-        }
-    
-        // Get the filtered drinks
-        $drinks = $drinksQuery->get();
-    
-        return view('pages.drinks', compact('drinks', 'category', 'categories'));
+{
+    $categories = Category::all();
+    $category = Category::findOrFail($id);
+
+    // Initialize query
+    $drinksQuery = Drinks::query();
+
+    // Filter drinks based on selected categories
+    if ($request->has('categories')) {
+        // Always filter by the selected categories
+        $drinksQuery->whereIn('category_id', $request->categories);
+    } else {
+        // Fallback to default category if no filter is applied
+        $drinksQuery->where('category_id', $id);
     }
+
+    // Get the filtered drinks
+    $drinks = $drinksQuery->get();
+
+    return view('pages.drinks', compact('drinks', 'category', 'categories'));
+}
+
+public function about()
+{
+    return view('pages.aboutus');
+}
+public function terms()
+{
+    return view('pages.terms');
+}
+
     
     
 
@@ -88,4 +93,48 @@ class PageController extends Controller
         $order = Order::with(['items.drink', 'user'])->findOrFail($id);
         return view('admin.orders.show', compact('order'));
     }
+
+    public function search(Request $request)
+    {
+        // Optional text query (if provided)
+        $query = $request->input('query');
+    
+        // Get an array of selected category IDs (if any)
+        $selectedCategories = $request->input('categories');
+    
+        // Get price range filters
+        $minPrice = $request->input('min_price');
+        $maxPrice = $request->input('max_price');
+    
+        // Retrieve all categories to populate the filter dropdown.
+        $allCategories = Category::all();
+    
+        $drinks = Drinks::with('category')
+            ->when($query, function ($q) use ($query) {
+                $q->where(function ($q2) use ($query) {
+                    $q2->where('name', 'like', "%{$query}%")
+                        ->orWhere('description', 'like', "%{$query}%");
+                });
+            })
+            ->when($selectedCategories, function ($q) use ($selectedCategories) {
+                $q->whereIn('category_id', $selectedCategories);
+            })
+            ->when($minPrice, function ($q) use ($minPrice) {
+                $q->where('price', '>=', $minPrice);
+            })
+            ->when($maxPrice, function ($q) use ($maxPrice) {
+                $q->where('price', '<=', $maxPrice);
+            })
+            ->get();
+    
+        return view('pages.drinks', [
+            'drinks' => $drinks,
+            'query' => $query,
+            'categories' => $allCategories,
+            'selectedCategories' => $selectedCategories,
+            'minPrice' => $minPrice,
+            'maxPrice' => $maxPrice,
+        ]);
+    }
+    
 }

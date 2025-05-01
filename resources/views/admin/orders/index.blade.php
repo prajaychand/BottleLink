@@ -19,6 +19,7 @@
                                                 <th class="py-3 ps-4 fw-semibold text-dark">Order ID</th>
                                                 <th class="py-3 fw-semibold text-dark">User</th>
                                                 <th class="py-3 fw-semibold text-dark">Total</th>
+                                                <th class="py-3 fw-semibold text-dark">Contact</th>
                                                 <th class="py-3 fw-semibold text-dark">Status</th>
                                                 <th class="py-3 fw-semibold text-dark">Placed At</th>
                                                 <th class="py-3 pe-4 fw-semibold text-dark text-center">Actions</th>
@@ -30,6 +31,8 @@
                                                     <td class="ps-4 fw-medium">#{{ $order->id }}</td>
                                                     <td>{{ $order->user->name ?? 'Guest' }}</td>
                                                     <td class="fw-medium">Rs.{{ number_format($order->total_price, 2) }}</td>
+                                                    <td class="fw-medium">{{ $order->user->phone }}</td>
+
                                                     <td>
                                                         @php
                                                             $statusClass = [

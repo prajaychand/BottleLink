@@ -1,31 +1,37 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BottleLink</title>
 
+    <!-- Bootstrap CSS (Latest version only) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome for icons -->
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Custom Stylesheet -->
-    <link rel="stylesheet" href="{{ asset('style.css') }}" class="rel">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
 
     <style>
         /* Modal Styles */
         .modal {
             display: none;
-            /* Hidden by default */
             position: fixed;
             z-index: 1;
             left: 0;
@@ -60,7 +66,6 @@
             background-color: red;
         }
 
-        /* Blurring effect */
         .blurred {
             filter: blur(5px);
             pointer-events: none;
@@ -89,65 +94,88 @@
 
     @include('frontend.Footer')
 
-    <!-- Custom Script -->
+    <!-- Toast for Success Message -->
+    @if (session()->has('success'))
+        <div class="toast-container position-fixed" style="z-index: 11; right: 1rem; bottom: 80px;">
+            <div class="toast align-items-center text-white bg-success border-0 show" role="alert"
+                 aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body fs-5">
+                        {{ session('success') }}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                            data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <!-- Toast for Errors -->
+    @if ($errors->any())
+        <div class="toast-container position-fixed" style="z-index: 11; right: 1rem; bottom: 80px;">
+            <div class="toast align-items-center text-white bg-danger border-0 show" role="alert"
+                 aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body fs-5">
+                        {{ $errors->first() }}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                            data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <!-- Scripts -->
     <script src="{{ asset('script.js') }}"></script>
-
-    <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
-    </script>
+            crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
-        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous">
+            crossorigin="anonymous"></script>
+
+    <!-- JavaScript for Age Modal -->
+    <script>
+        function getCookie(name) {
+            let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            return match ? match[2] : null;
+        }
+
+        window.onload = function () {
+            var modal = document.getElementById('ageModal');
+            var websiteContent = document.getElementById('websiteContent');
+
+            if (!getCookie('ageConfirmed')) {
+                modal.style.display = "block";
+                websiteContent.classList.add('blurred');
+            } else {
+                websiteContent.classList.remove('blurred');
+                document.getElementById('websiteMainContent').style.display = "block";
+            }
+        };
+
+        document.getElementById('over18').onclick = function () {
+            document.cookie = "ageConfirmed=true; path=/";
+            document.getElementById('ageModal').style.display = "none";
+            document.getElementById('websiteContent').classList.remove('blurred');
+            document.getElementById('websiteMainContent').style.display = "block";
+        };
+
+        document.getElementById('under18').onclick = function () {
+            window.location.href = "https://www.google.com";
+        };
     </script>
 
-<script>
-    // Function to get the value of a specific cookie by name
-    function getCookie(name) {
-        let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-        return match ? match[2] : null;
-    }
-
-    // Show the modal when the page loads
-    window.onload = function() {
-        var modal = document.getElementById('ageModal');
-        var websiteContent = document.getElementById('websiteContent');
-
-        // Check if the user has already confirmed their age (using a session cookie)
-        if (!getCookie('ageConfirmed')) {
-            modal.style.display = "block";
-            // Apply blur effect to the website content
-            websiteContent.classList.add('blurred');
-        } else {
-            // Remove blur effect if the user has already confirmed
-            websiteContent.classList.remove('blurred');
-            document.getElementById('websiteMainContent').style.display = "block";
-        }
-    };
-
-    // When the user clicks "Over 18"
-    document.getElementById('over18').onclick = function() {
-        // Set a session cookie to remember the user's choice for the current session
-        document.cookie = "ageConfirmed=true; path=/";
-
-        // Hide the modal
-        document.getElementById('ageModal').style.display = "none";
-        // Remove blur effect from the website content
-        document.getElementById('websiteContent').classList.remove('blurred');
-        // Show the website content
-        document.getElementById('websiteMainContent').style.display = "block";
-    };
-
-    // When the user clicks "Under 18"
-    document.getElementById('under18').onclick = function() {
-        // Redirect to Google
-        window.location.href = "https://www.google.com";
-    };
-</script>
-
-
+    <!-- JavaScript to Show Bootstrap Toasts -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const toastElList = [].slice.call(document.querySelectorAll('.toast'));
+            toastElList.map(function (toastEl) {
+                const toast = new bootstrap.Toast(toastEl, { delay: 4000 });
+                toast.show();
+            });
+        });
+    </script>
 </body>
 
 </html>
