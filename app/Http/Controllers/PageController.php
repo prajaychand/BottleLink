@@ -50,7 +50,10 @@ public function terms()
     return view('pages.terms');
 }
 
-    
+public function awareness()
+{
+    return view('pages.awareness');
+} 
     
 
     public function posts()

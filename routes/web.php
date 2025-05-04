@@ -27,6 +27,7 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/search', 'search')->name('search'); 
     Route::get('/about', 'about')->name('about'); 
     Route::get('/terms', 'terms')->name('terms&conditions'); 
+    Route::get('/awareness', 'awareness')->name('awareness'); 
 
 
 });

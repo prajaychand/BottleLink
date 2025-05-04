@@ -33,10 +33,8 @@
                             <div style="width: 50px; height: 5px; background-color: #FFD700; margin-bottom: 15px; border-radius: 3px;"></div>
                             <h2 class="fw-bold mb-3" style="color: #FFD700;">Why Choose Us?</h2>
                             <ul class="list-unstyled" style="font-size: 1.05rem; line-height: 1.7;">
-                                <li class="mb-3 d-flex align-items-center">
-                                    <span class="d-inline-flex align-items-center justify-content-center me-3" style="width: 30px; height: 30px; background-color: #FFD700; color: #000; border-radius: 50%; font-weight: bold;">✓</span>
-                                    <span class="text-light" style="opacity: 0.9;">Fast & Reliable Delivery</span>
-                                </li>
+                                
+                            
                                 <li class="mb-3 d-flex align-items-center">
                                     <span class="d-inline-flex align-items-center justify-content-center me-3" style="width: 30px; height: 30px; background-color: #FFD700; color: #000; border-radius: 50%; font-weight: bold;">✓</span>
                                     <span class="text-light" style="opacity: 0.9;">Wide Selection of Beverages</span>

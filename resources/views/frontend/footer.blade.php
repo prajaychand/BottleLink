@@ -78,6 +78,9 @@
           <p>
             <a href="{{route('terms&conditions')}}" class="footer-link">Terms and Conditions</a>
           </p>
+          <p>
+            <a href="{{route('awareness')}}" class="footer-link">Awareness</a>
+          </p>
         </div>
         <!-- Grid column -->
 
@@ -107,15 +110,9 @@
 
   <!-- Copyright -->
   <div class="text-center p-4 copyright-section">
-    <div class="container d-md-flex justify-content-between align-items-center">
-      <div class="mb-3 mb-md-0">
-        © 2024 BottleLink | All rights reserved
-      </div>
-      <div class="footer-legal-links">
-        <a href="#!" class="me-4">Privacy Policy</a>
-        <a href="#!" class="me-4">Terms of Service</a>
-        <a href="#!">Responsible Drinking</a>
-      </div>
+    <div class="copyright-section d-flex justify-content-center align-items-center p-4" style="min-height: 80px;">
+      © 2025 BottleLink | All rights reserved
+    </div>
     </div>
   </div>
   <!-- Copyright -->
