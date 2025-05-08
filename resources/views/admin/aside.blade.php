@@ -32,8 +32,14 @@
 
         <li class="nav-item">
             <a class="nav-link" href="{{route('admin.orders.index')}}">
-                <i class="bi bi-cup"></i>
+                <i class="bi bi-cart"></i>
                 <span class="link-text">Order</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.gallery.index')}}">
+                <i class="bi bi-images"></i>
+                <span class="link-text">Gallery</span>
             </a>
         </li>
     </ul>

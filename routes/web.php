@@ -110,6 +110,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
     Route::patch('/orders/{id}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
+
+    Route::get('gallery', [AdminController::class, 'indexGallery'])->name('gallery.index');
+    Route::delete('gallery/{id}', [AdminController::class, 'destroyGallery'])->name('gallery.destroy');
 });
 
 Route::middleware('guest')->group(function () {
